@@ -7,26 +7,27 @@ body {
 button {
   padding: 20px;
   width: 25%;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
   font-size: 1.3em;
-  }
+}
 
-  button:active {
-    background-color: #c1c1c1;
-
-  }
+button:active {
+  background-color: #c1c1c1;
+}
 .output {
   /* padding: 30px; */
   background-color: #989898;
   color: white;
   font-weight: 200;
+  min-height: 93px;
+
   /* text-align: center; */
   font-size: 31px;
   margin: 0 auto;
   line-height: 3;
 }
 
-.calculator{
+.calculator {
   width: 300px;
   margin: 0 auto;
   border-radius: 5px;
@@ -35,7 +36,7 @@ button {
   width: 50%;
 }
 
-.orange{
-  background-color: #F5A140;
-  color:white;
+.orange {
+  background-color: #f5a140;
+  color: white;
 }

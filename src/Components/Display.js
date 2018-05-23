@@ -6,11 +6,11 @@ export default class Display extends React.Component {
     super();
   }
 
-  onClick(){
+  onClick() {
     console.log("worked?");
   }
 
   render() {
-    return <div className="output">display: </div>;
+    return <div className="output">{0 || this.props.inputValue}</div>;
   }
 }
