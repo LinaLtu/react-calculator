@@ -1,6 +1,8 @@
 import React from "react";
+import ButtonPanel from "./ButtonPanel.js";
+import Display from "./Display.js";
 
-export default class Button extends React.Component {
+export default class Calculator extends React.Component {
   constructor() {
     super();
 
@@ -16,6 +18,11 @@ export default class Button extends React.Component {
   }
 
   render() {
-    return <button onClick={this.onClick}>{this.props.sign}</button>;
+    return (
+      <div>
+        <Display />
+        <ButtonPanel />
+      </div>
+    );
   }
 }

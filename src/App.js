@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import ButtonPanel from "./Components/ButtonPanel.js";
-import Display from "./Components/Display.js";
+import Calculator from "./Components/Calculator.js";
 
 class App extends Component {
   render() {
@@ -10,8 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Calculator</h1>
-          <Display />
-          <ButtonPanel />
+          <Calculator />
         </header>
       </div>
     );

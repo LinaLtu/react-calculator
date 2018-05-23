@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button.js";
 
 export default class Display extends React.Component {
   constructor() {
@@ -6,6 +7,6 @@ export default class Display extends React.Component {
   }
 
   render() {
-    return <div className="output">This is our output</div>;
+    return <div className="output">display</div>;
   }
 }
