@@ -3,21 +3,27 @@ import Button from "./Button.js";
 import Display from "./Display.js";
 
 export default class Calculator extends React.Component {
+
   constructor() {
     super();
 
-    this.state = { inputValue: "" };
+    this.state = { inputValue: 0 , inputBuffer:""};
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(value) {
-    // value = +value;
-    this.setState({ inputValue: value }, function() {
-      //console.log(this.state.inputValue+' hi '+this.props.sign);
-      console.log(value);
+    if(this.state.inputValue===0){
+      var inputBuffer;
+      inputBuffer=value;
+    }else{
+      inputBuffer=this.state.inputValue+value;
+    }
+    this.setState({ inputValue: inputBuffer }, function() {
+      console.log(inputBuffer);
       console.log(this.state.inputValue);
     });
+
   }
 
   render() {
