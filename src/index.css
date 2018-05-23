@@ -16,11 +16,14 @@ button {
 
   }
 .output {
-  padding: 30px;
+  /* padding: 30px; */
   background-color: #989898;
   color: white;
-  text-align: center;
+  font-weight: 200;
+  /* text-align: center; */
+  font-size: 31px;
   margin: 0 auto;
+  line-height: 3;
 }
 
 .calculator{
