@@ -6,16 +6,16 @@ export default class Button extends React.Component {
 
     this.state = { inputValue: "" };
 
-    this.onClick = this.onClick.bind(this);
+    // this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    this.setState({ inputValue: this.props.sign }, function() {
-      console.log(this.state.inputValue);
-    });
-  }
+  // onClick(e) {
+  //   this.setState({ inputValue: this.props.sign }, function() {
+  //     console.log(this.state.inputValue);
+  //   });
+  // }
 
   render() {
-    return <button onClick={this.onClick}>{this.props.sign}</button>;
+    return <button className={this.props.classes} onClick={this.onClick}>{this.props.sign}</button>;
   }
 }

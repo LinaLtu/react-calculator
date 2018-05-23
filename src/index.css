@@ -6,12 +6,33 @@ body {
 
 button {
   padding: 20px;
-}
+  width: 25%;
+  background-color: #E0E0E0;
+  font-size: 1.3em;
+  }
 
+  button:active {
+    background-color: #c1c1c1;
+
+  }
 .output {
-  border: 1px solid black;
   padding: 30px;
-  width: 30%;
+  background-color: #989898;
+  color: white;
   text-align: center;
   margin: 0 auto;
+}
+
+.calculator{
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.button-50 {
+  width: 50%;
+}
+
+.orange{
+  background-color: #F5A140;
+  color:white;
 }

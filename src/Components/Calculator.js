@@ -19,9 +19,9 @@ export default class Calculator extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="calculator">
         <Display />
-        <ButtonPanel />
+        <ButtonPanel onClick={this.props.onClick} />
       </div>
     );
   }
