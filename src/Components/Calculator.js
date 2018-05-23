@@ -6,13 +6,12 @@ export default class Calculator extends React.Component {
 
   constructor() {
     super();
-
     this.state = { inputValue: 0 , inputBuffer:""};
-
-    this.handleClick = this.handleClick.bind(this);
+    this.handleNumberClick = this.handleNumberClick.bind(this);
+    this.handleOperatorClick = this.handleOperatorClick.bind(this);
   }
 
-  handleClick(value) {
+  handleNumberClick(value) {
     if(this.state.inputValue===0){
       var inputBuffer;
       inputBuffer=value;
@@ -21,7 +20,21 @@ export default class Calculator extends React.Component {
     }
     this.setState({ inputValue: inputBuffer }, function() {
       console.log(inputBuffer);
-      console.log(this.state.inputValue);
+      //console.log(this.state.inputValue);
+    });
+
+  }
+
+  handleOperatorClick(value) {
+    if(this.state.inputValue===0){
+      var inputBuffer;
+      inputBuffer=value;
+    }else{
+      inputBuffer=this.state.inputValue+value;
+    }
+    this.setState({ inputValue: inputBuffer }, function() {
+      console.log(inputBuffer);
+      //console.log(this.state.inputValue);
     });
 
   }
@@ -30,29 +43,29 @@ export default class Calculator extends React.Component {
     return (
       <div className="calculator">
         <Display inputValue={this.state.inputValue} />
-        <Button handleClick={this.handleClick} sign="AC" />
-        <Button handleClick={this.handleClick} sign="+/-" />
-        <Button handleClick={this.handleClick} sign="%" />
-        <Button handleClick={this.handleClick} sign="/" classes="orange" />{" "}
+        <Button handleOperatorClick={this.handleOperatorClick} sign="AC" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="+/-" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="%" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="/" classes="orange" />{" "}
         <br />
-        <Button handleClick={this.handleClick} sign="7" />
-        <Button handleClick={this.handleClick} sign="8" />
-        <Button handleClick={this.handleClick} sign="9" />
-        <Button handleClick={this.handleClick} sign="*" classes="orange" />{" "}
+        <Button handleNumberClick={this.handleNumberClick} sign="7" />
+        <Button handleNumberClick={this.handleNumberClick} sign="8" />
+        <Button handleNumberClick={this.handleNumberClick} sign="9" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="*" classes="orange" />{" "}
         <br />
-        <Button handleClick={this.handleClick} sign="4" />
-        <Button handleClick={this.handleClick} sign="5" />
-        <Button handleClick={this.handleClick} sign="6" />
-        <Button handleClick={this.handleClick} sign="-" classes="orange" />{" "}
+        <Button handleNumberClick={this.handleNumberClick} sign="4" />
+        <Button handleNumberClick={this.handleNumberClick} sign="5" />
+        <Button handleNumberClick={this.handleNumberClick} sign="6" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="-" classes="orange" />{" "}
         <br />
-        <Button handleClick={this.handleClick} sign="1" />
-        <Button handleClick={this.handleClick} sign="2" />
-        <Button handleClick={this.handleClick} sign="3" />
-        <Button handleClick={this.handleClick} sign="+" classes="orange" />{" "}
+        <Button handleNumberClick={this.handleNumberClick} sign="1" />
+        <Button handleNumberClick={this.handleNumberClick} sign="2" />
+        <Button handleNumberClick={this.handleNumberClick} sign="3" />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="+" classes="orange" />{" "}
         <br />
-        <Button handleClick={this.handleClick} sign="0" classes="button-50" />
-        <Button handleClick={this.handleClick} sign="," />
-        <Button handleClick={this.handleClick} sign="=" classes="orange" />{" "}
+        <Button handleNumberClick={this.handleNumberClick} sign="0" classes="button-50" />
+        <Button handleNumberClick={this.handleNumberClick} sign="," />
+        <Button handleOperatorClick={this.handleOperatorClick} sign="=" classes="orange" />{" "}
         <br />
       </div>
     );
