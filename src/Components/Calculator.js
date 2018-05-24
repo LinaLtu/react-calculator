@@ -34,7 +34,9 @@ export default class Calculator extends React.Component {
         if (value === 'AC') {
             number = 0;
             value = '=';
-        } else if (this.state.operator !== '=') {
+        }
+        else if (this.state.operator !== '=') {
+
             switch (this.state.operator) {
                 case '+':
                     number += this.state.inputValue;
@@ -48,8 +50,16 @@ export default class Calculator extends React.Component {
                 case '/':
                     number /= this.state.inputValue;
                     break;
+                case '%':
+                    number = number/100*this.state.inputValue;
+                    break;
+                case '+/-':
+                    number *= (-1);
+                    console.log(this.state.inputValue);
+                    break;
             }
-        } else if (this.state.inputValue > 0) {
+
+        } else if (this.state.inputValue !== 0) {
             number = this.state.inputValue;
         }
 
