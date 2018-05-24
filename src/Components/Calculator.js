@@ -36,7 +36,11 @@ export default class Calculator extends React.Component {
       number = 0;
       value = "=";
     } else if (value === "+/-") {
-      finalInputValue = this.state.inputValue * -1;
+      if (this.state.inputValue != 0) {
+        finalInputValue = this.state.inputValue * -1;
+      } else {
+        finalInputValue = number * -1;
+      }
       number = finalInputValue;
     } else if (this.state.operator !== "=") {
       switch (this.state.operator) {
