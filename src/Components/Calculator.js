@@ -1,73 +1,128 @@
-import React from "react";
-import Button from "./Button.js";
-import Display from "./Display.js";
+import React from 'react';
+import Button from './Button.js';
+import Display from './Display.js';
 
 export default class Calculator extends React.Component {
-
-  constructor() {
-    super();
-    this.state = { inputValue: 0 , inputBuffer:""};
-    this.handleNumberClick = this.handleNumberClick.bind(this);
-    this.handleOperatorClick = this.handleOperatorClick.bind(this);
-  }
-
-  handleNumberClick(value) {
-    if(this.state.inputValue===0){
-      var inputBuffer;
-      inputBuffer=value;
-    }else{
-      inputBuffer=this.state.inputValue+value;
+    constructor() {
+        super();
+        this.state = {
+            inputValue: 0,
+            number: 0,
+            operator: '='
+        };
+        this.handleNumberClick = this.handleNumberClick.bind(this);
+        this.handleOperatorClick = this.handleOperatorClick.bind(this);
     }
-    this.setState({ inputValue: inputBuffer }, function() {
-      console.log(inputBuffer);
-      //console.log(this.state.inputValue);
-    });
 
-  }
+    handleNumberClick(value) {
+        let inputBuffer;
 
-  handleOperatorClick(value) {
-    if(this.state.inputValue===0){
-      var inputBuffer;
-      inputBuffer=value;
-    }else{
-      inputBuffer=this.state.inputValue+value;
+        if (this.state.inputValue === 0) {
+            inputBuffer = value;
+        } else {
+            inputBuffer = this.state.inputValue + value;
+        }
+        this.setState({ inputValue: parseInt(inputBuffer) }, function() {
+            console.log(inputBuffer);
+            //console.log(this.state.inputValue);
+        });
     }
-    this.setState({ inputValue: inputBuffer }, function() {
-      console.log(inputBuffer);
-      //console.log(this.state.inputValue);
-    });
 
-  }
+    handleOperatorClick(value) {
+        let number = this.state.number;
 
-  render() {
-    return (
-      <div className="calculator">
-        <Display inputValue={this.state.inputValue} />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="AC" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="+/-" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="%" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="/" classes="orange" />{" "}
-        <br />
-        <Button handleNumberClick={this.handleNumberClick} sign="7" />
-        <Button handleNumberClick={this.handleNumberClick} sign="8" />
-        <Button handleNumberClick={this.handleNumberClick} sign="9" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="*" classes="orange" />{" "}
-        <br />
-        <Button handleNumberClick={this.handleNumberClick} sign="4" />
-        <Button handleNumberClick={this.handleNumberClick} sign="5" />
-        <Button handleNumberClick={this.handleNumberClick} sign="6" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="-" classes="orange" />{" "}
-        <br />
-        <Button handleNumberClick={this.handleNumberClick} sign="1" />
-        <Button handleNumberClick={this.handleNumberClick} sign="2" />
-        <Button handleNumberClick={this.handleNumberClick} sign="3" />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="+" classes="orange" />{" "}
-        <br />
-        <Button handleNumberClick={this.handleNumberClick} sign="0" classes="button-50" />
-        <Button handleNumberClick={this.handleNumberClick} sign="," />
-        <Button handleOperatorClick={this.handleOperatorClick} sign="=" classes="orange" />{" "}
-        <br />
-      </div>
-    );
-  }
+        if (value === 'AC') {
+            number = 0;
+            value = '=';
+        } else if (this.state.operator !== '=') {
+            switch (this.state.operator) {
+                case '+':
+                    number += this.state.inputValue;
+                    break;
+                case '-':
+                    number -= this.state.inputValue;
+                    break;
+                case '*':
+                    number *= this.state.inputValue;
+                    break;
+                case '/':
+                    number /= this.state.inputValue;
+                    break;
+            }
+        } else if (this.state.inputValue > 0) {
+            number = this.state.inputValue;
+        }
+
+        this.setState({ inputValue: 0, operator: value, number: number });
+        // if (this.state.inputValue === 0) {
+        //     var inputBuffer;
+        //     inputBuffer = value;
+        // } else {
+        //     inputBuffer = this.state.inputValue + value;
+        // }
+        // this.setState({ inputValue: inputBuffer }, function() {
+        //     console.log(inputBuffer);
+        //     //console.log(this.state.inputValue);
+        // });
+    }
+
+    render() {
+        return (
+            <div className="calculator">
+                <Display
+                    inputValue={this.state.inputValue}
+                    number={this.state.number}
+                    operator={this.state.operator}
+                />
+                <Button handleClick={this.handleOperatorClick} sign="AC" />
+                <Button handleClick={this.handleOperatorClick} sign="+/-" />
+                <Button handleClick={this.handleOperatorClick} sign="%" />
+                <Button
+                    handleClick={this.handleOperatorClick}
+                    sign="/"
+                    classes="orange"
+                />{' '}
+                <br />
+                <Button handleClick={this.handleNumberClick} sign="7" />
+                <Button handleClick={this.handleNumberClick} sign="8" />
+                <Button handleClick={this.handleNumberClick} sign="9" />
+                <Button
+                    handleClick={this.handleOperatorClick}
+                    sign="*"
+                    classes="orange"
+                />{' '}
+                <br />
+                <Button handleClick={this.handleNumberClick} sign="4" />
+                <Button handleClick={this.handleNumberClick} sign="5" />
+                <Button handleClick={this.handleNumberClick} sign="6" />
+                <Button
+                    handleClick={this.handleOperatorClick}
+                    sign="-"
+                    classes="orange"
+                />{' '}
+                <br />
+                <Button handleClick={this.handleNumberClick} sign="1" />
+                <Button handleClick={this.handleNumberClick} sign="2" />
+                <Button handleClick={this.handleNumberClick} sign="3" />
+                <Button
+                    handleClick={this.handleOperatorClick}
+                    sign="+"
+                    classes="orange"
+                />{' '}
+                <br />
+                <Button
+                    handleClick={this.handleNumberClick}
+                    sign="0"
+                    classes="button-50"
+                />
+                <Button handleClick={this.handleNumberClick} sign="," />
+                <Button
+                    handleClick={this.handleOperatorClick}
+                    sign="="
+                    classes="orange"
+                />{' '}
+                <br />
+            </div>
+        );
+    }
 }
