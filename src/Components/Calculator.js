@@ -6,70 +6,87 @@ export default class Calculator extends React.Component {
   constructor() {
     super();
     this.state = {
-      inputValue: 0,
-      number: 0,
-      operator: "="
+      currentInput: 0,
+      calculatedResult: 0,
+      operator: "=",
+      isCommaAdded: false
     };
     this.handleNumberClick = this.handleNumberClick.bind(this);
     this.handleOperatorClick = this.handleOperatorClick.bind(this);
   }
 
   handleNumberClick(value) {
-    let inputBuffer;
+    let inputBuffer = "";
+    if (value === ".") {
+      this.setState({ isCommaAdded: true });
+    }
+    if (this.state.isCommaAdded === true && value == ".") {
+      // console.log("This is true");
+      // inputBuffer = this.state.currentInput;
+      value = "";
+      // this.setState({ isCommaAdded: false });
+    } else {
+      //
+    }
 
-    if (this.state.inputValue === 0) {
+    if (this.state.currentInput === 0) {
       inputBuffer = value;
     } else {
-      inputBuffer = this.state.inputValue + value;
-    }
-    this.setState({ inputValue: parseInt(inputBuffer) }, function() {
+      inputBuffer = this.state.currentInput + value;
       console.log(inputBuffer);
-      //console.log(this.state.inputValue);
-    });
+    }
+
+    console.log(this.state.isCommaAdded);
+    this.setState({ currentInput: inputBuffer });
   }
 
   handleOperatorClick(value) {
-    let number = this.state.number;
+    let calculatedResult = parseFloat(this.state.calculatedResult);
     let finalInputValue = 0;
+    let parsedCurrentInput = parseFloat(this.state.currentInput);
 
     if (value === "AC") {
-      number = 0;
+      calculatedResult = 0;
       value = "=";
     } else if (value === "+/-") {
-      if (this.state.inputValue != 0) {
-        finalInputValue = this.state.inputValue * -1;
+      if (this.state.currentInput != 0) {
+        finalInputValue = parsedCurrentInput * -1;
       } else {
-        finalInputValue = number * -1;
+        finalInputValue = calculatedResult * -1;
       }
-      number = finalInputValue;
+      calculatedResult = finalInputValue;
     } else if (this.state.operator !== "=") {
+      if (this.state.currentInput == 0) {
+        calculatedResult = parsedCurrentInput;
+      }
       switch (this.state.operator) {
         case "+":
-          number += this.state.inputValue;
-          console.log(number);
-          console.log(this.state.inputValue);
+          calculatedResult += parsedCurrentInput;
+          console.log(calculatedResult);
+          console.log(this.state.currentInput);
           break;
         case "-":
-          number -= this.state.inputValue;
+          calculatedResult -= parsedCurrentInput;
           break;
         case "*":
-          number *= this.state.inputValue;
+          calculatedResult *= parsedCurrentInput;
           break;
         case "/":
-          number /= this.state.inputValue;
+          calculatedResult /= parsedCurrentInput;
           break;
         case "%":
-          number = number / 100 * this.state.inputValue;
+          calculatedResult = calculatedResult / 100 * parsedCurrentInput;
           break;
       }
-    } else if (this.state.inputValue !== 0) {
-      number = this.state.inputValue;
+    } else if (this.state.currentInput !== 0) {
+      calculatedResult = parsedCurrentInput;
     }
 
     this.setState({
-      inputValue: finalInputValue,
+      currentInput: finalInputValue,
       operator: value,
-      number: number
+      calculatedResult: calculatedResult,
+      isCommaAdded: false
     });
   }
 
@@ -77,8 +94,8 @@ export default class Calculator extends React.Component {
     return (
       <div className="calculator">
         <Display
-          inputValue={this.state.inputValue}
-          number={this.state.number}
+          currentInput={this.state.currentInput}
+          calculatedResult={this.state.calculatedResult}
           operator={this.state.operator}
         />
         <Button handleClick={this.handleOperatorClick} sign="AC" />
@@ -122,7 +139,7 @@ export default class Calculator extends React.Component {
           sign="0"
           classes="button-50"
         />
-        <Button handleClick={this.handleNumberClick} sign="," />
+        <Button handleClick={this.handleNumberClick} sign="." />
         <Button
           handleClick={this.handleOperatorClick}
           sign="="

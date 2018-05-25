@@ -3,7 +3,7 @@ import React from "react";
 export default class Button extends React.Component {
   constructor() {
     super();
-    this.state = { inputValue: "" };
+    this.state = { currentInput: "" };
   }
 
   render() {

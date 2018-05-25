@@ -5,12 +5,18 @@ export default class Display extends React.Component {
     let displayState;
     //checks the current display value and
     //shows the user the latest result or input
-    if (this.props.number === 0 && this.props.inputValue !== 0) {
-      displayState = this.props.inputValue;
-    } else if (this.props.number !== 0 && this.props.inputValue !== 0) {
-      displayState = this.props.inputValue;
-    } else if (this.props.number !== 0 && this.props.inputValue === 0) {
-      displayState = this.props.number;
+    if (this.props.calculatedResult === 0 && this.props.currentInput !== 0) {
+      displayState = this.props.currentInput;
+    } else if (
+      this.props.calculatedResult !== 0 &&
+      this.props.currentInput !== 0
+    ) {
+      displayState = this.props.currentInput;
+    } else if (
+      this.props.calculatedResult !== 0 &&
+      this.props.currentInput === 0
+    ) {
+      displayState = this.props.calculatedResult.toFixed(1);
     } else {
       displayState = 0;
     }
